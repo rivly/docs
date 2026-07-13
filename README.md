@@ -1,45 +1,43 @@
-# docs
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="public/rivly-docs-white-no-bg.png" />
+    <img alt="Rivly" src="public/rivly-docs-blue-no-bg.png" width="400" />
+  </picture>
+</p>
 
-This is a Next.js application generated with
-[Create Fumadocs](https://github.com/fuma-nama/fumadocs).
+The documentation site for [Rivly](https://github.com/rivly/rivly), live at [docs.rivly.dev](https://docs.rivly.dev).
 
-Run development server:
+## Development
+
+Requires [Bun](https://bun.sh).
 
 ```bash
-npm run dev
-# or
-pnpm dev
-# or
-yarn dev
+bun install         # install dependencies
+bun run dev         # dev server at localhost:3000
+bun run build       # static export to out/
+bun run types:check # type-check
 ```
 
-Open http://localhost:3000 with your browser to see the result.
+## Stack
 
-## Explore
+Fumadocs on Next.js 16, React 19, TypeScript 6, and Tailwind CSS 4. Content is written in MDX.
 
-In the project, you can see:
+```
+app/            Next.js App Router (layout, docs route, search, og, llms)
+content/docs/   documentation pages (MDX)
+components/     provider and static search dialog
+lib/            content source and shared config
+public/         logos and favicon
+```
 
-- `lib/source.ts`: Code for content source adapter, [`loader()`](https://fumadocs.dev/docs/headless/source-api) provides the interface to access your content.
-- `lib/layout.shared.tsx`: Shared options for layouts, optional but preferred to keep.
+## Writing docs
 
-| Route                     | Description                                            |
-| ------------------------- | ------------------------------------------------------ |
-| `app/(home)`              | The route group for your landing page and other pages. |
-| `app/docs`                | The documentation layout and pages.                    |
-| `app/api/search/route.ts` | The Route Handler for search.                          |
+Add an `.mdx` file under `content/docs/` and it appears in the sidebar automatically.
 
-### Fumadocs MDX
+## Deployment
 
-A `source.config.ts` config file has been included, you can customise different options like frontmatter schema.
+Deployed on Cloudflare Pages as a Next.js static export: build `bun run build`, output directory `out`. Use the "Next.js (Static HTML Export)" preset, not `@cloudflare/next-on-pages` (deprecated).
 
-Read the [Introduction](https://fumadocs.dev/docs/mdx) for further details.
+## License
 
-## Learn More
-
-To learn more about Next.js and Fumadocs, take a look at the following
-resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js
-  features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-- [Fumadocs](https://fumadocs.dev) - learn about Fumadocs
+MIT
